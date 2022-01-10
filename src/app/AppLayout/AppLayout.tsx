@@ -8,10 +8,20 @@ import {
   Page,
   PageHeader,
   PageSidebar,
-  SkipToContent
+  SkipToContent,
+  Masthead,
+  MastheadBrand,
+  MastheadContent,
+  MastheadMain,
+  MastheadToggle,
+  PageToggleButton,
+  Toolbar,
+  ToolbarContent,
+  ToolbarItem
 } from '@patternfly/react-core';
 import { routes, IAppRoute, IAppRouteGroup } from '@app/routes';
-import logo from '@app/bgimages/Patternfly-Logo.svg';
+import logo from '@app/bgimages/redhat-logo.png';
+import { BarsIcon } from '@patternfly/react-icons';
 
 interface IAppLayout {
   children: React.ReactNode;
@@ -41,13 +51,33 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({ children }) => {
     );
   }
 
+  const headerToolbar = (
+    <Toolbar id="toolbar">
+      <ToolbarContent>
+        <ToolbarItem>Mileage Report Tool</ToolbarItem>
+      </ToolbarContent>
+    </Toolbar>
+  );
+
   const Header = (
-    <PageHeader
-      logo={<LogoImg />}
-      showNavToggle
-      isNavOpen={isNavOpen}
-      onNavToggle={isMobileView ? onNavToggleMobile : onNavToggle}
-    />
+    <Masthead>
+        <MastheadToggle>
+          <PageToggleButton
+            variant="plain"
+            aria-label="Global navigation"
+            isNavOpen={isNavOpen}
+            onNavToggle={onNavToggle}
+          >
+            <BarsIcon />
+          </PageToggleButton>
+        </MastheadToggle>
+        <MastheadMain >
+          <MastheadBrand href="https://redhat.com" onClick={() => console.log('clicked logo')} target="_blank">
+          <img style={{width : "15%"}} src={logo}/>
+          </MastheadBrand>
+        </MastheadMain>
+        <MastheadContent>{headerToolbar}</MastheadContent>
+      </Masthead>
   );
 
   const location = useLocation();

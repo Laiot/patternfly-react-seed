@@ -1,0 +1,12 @@
+.top-title {
+    font-size: 4.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.top-content {
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-bottom: 16px;
+}
